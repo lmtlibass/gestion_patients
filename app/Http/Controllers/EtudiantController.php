@@ -90,7 +90,8 @@ class EtudiantController extends Controller
      */
     public function edit($id)
     {
-        return view('etudiant.edit', compact('id'));
+        $info_etudiant = InfoEtudiant::findOrFail($id);
+        return view('etudiant.edit', compact('info_etudiant'));
     }
 
     /**
@@ -103,6 +104,30 @@ class EtudiantController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $request->validate([
+            'prenom'        => 'required',
+            'nom'           => 'required',
+            'num_etudiant'  => 'required',
+            'departement'   => 'required',
+            'symptome'      => 'required',
+            'traitement'    => 'required',
+            'antecedant'    => 'required'
+        ]);
+
+         $info_etudiant = InfoEtudiant::findOrFail($id);
+
+         $info_etudiant->prenom        = $request->get('prenom');
+         $info_etudiant->nom           = $request->get('nom');
+         $info_etudiant->num_etudiant  = $request->get('num_etudiant');
+         $info_etudiant->departement   = $request->get('departement');
+         $info_etudiant->symptome      = $request->get('symptome');
+         $info_etudiant->traitement    = $request->get('traitement');
+         $info_etudiant->antecedant    = $request->get('antecedant');
+         $info_etudiant->user_id       = Auth::user()->id;
+        
+
+        $info_etudiant->update();
+        return redirect()->route('etudiant.index')->with('success', 'Vos informations ont été mis à jours');
     }
 
     /**
@@ -114,5 +139,10 @@ class EtudiantController extends Controller
     public function destroy($id)
     {
         //
+        $info_etudiant = InfoEtudiant::findOrFail($id);
+        $info_etudiant->delete();
+
+        return redirect()->route('etudiant.index')->with('success', 'vos informations ont été supprimés');
+        
     }
 }
