@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admin\UserController;
 use App\Http\Controllers\EtudiantController;
+use App\Http\Controllers\ServiceController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -25,6 +26,7 @@ Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::resource('etudiant', EtudiantController::class);
+Route::resource('service', ServiceController::class);
 
 Route::namespace('App\Http\Controllers\admin')->prefix('admin')->name('admin.')->group(function() {
     Route::resource('user', UserController::class);

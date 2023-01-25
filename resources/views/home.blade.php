@@ -37,7 +37,7 @@
                                                   primaires,
                                                   des consultations médicales,
                                                   des vaccins et des soins dentaires.</p>
-                                             <a href="#" class="btn btn-info text-white" style="font-weight: bolder">
+                                             <a href="{{Route('service.index')}}" class="btn btn-info text-white" style="font-weight: bolder">
                                                   Voir services</a>
                                         </div>
                                    </div>

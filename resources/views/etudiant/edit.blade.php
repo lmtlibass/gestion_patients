@@ -4,6 +4,9 @@
      <div class="container">
           <div class="row justify-content-center">
                <div class="col-md-10">
+                    <button class="btn btn-secondary text-white mb-5" onclick="location.href='{{route('etudiant.index')}}'">
+                         <i class="bi bi-skip-backward-fill"></i> Retour
+                    </button>
                     <div class="card">
                          <div class="card-header bg-success text-white font-weight-bold" style="font-size: 24px">
                               Bienvenue! Service de santé CROUSZ</div>
