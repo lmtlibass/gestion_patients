@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Service;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ServiceController extends Controller
 {
@@ -15,7 +16,7 @@ class ServiceController extends Controller
     public function index()
     {
         //
-        $services = Service::all();
+        $services = Service::paginate(3);
 
         return view('service.index', compact('services'));
     }
@@ -28,6 +29,7 @@ class ServiceController extends Controller
     public function create()
     {
         //
+        return view('service.create');
     }
 
     /**
@@ -39,6 +41,27 @@ class ServiceController extends Controller
     public function store(Request $request)
     {
         //
+
+        $request->validate([
+            'nom_service' => 'required',
+            'description' => 'required',
+            'medecin'     => 'required',
+            'emplacement' => 'required',
+            'horraires'   => 'required',
+        ]);
+
+        $service = new Service([
+            'nom_service' => $request->get('nom_service'),
+            'description' => $request->get('nom_service'),
+            'medecin'     => $request->get('nom_service'),
+            'emplacement' => $request->get('nom_service'),
+            'horraires'   => $request->get('nom_service'),
+            'user_id'       => Auth::user()->id,
+        ]);
+
+        $service->save();
+
+        return redirect()->route('service.index')->with('success', 'Service Ajouté avec succés');
     }
 
     /**
@@ -50,6 +73,9 @@ class ServiceController extends Controller
     public function show($id)
     {
         //
+        $service = Service::findOrFail($id);
+
+        return view('service.show', compact('service'));
     }
 
     /**
@@ -61,6 +87,9 @@ class ServiceController extends Controller
     public function edit($id)
     {
         //
+        $service = Service::findOrFail($id);
+
+        return view('service.edit', compact('service'));
     }
 
     /**
@@ -73,6 +102,27 @@ class ServiceController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $request->validate([
+            'nom_service' => 'required',
+            'description' => 'required',
+            'medecin'     => 'required',
+            'emplacement' => 'required',
+            'horraires'   => 'required',
+        ]);
+
+        $service = Service::findOrFail($id);
+
+         $service->nom_service      = $request->get('nom_service');
+         $service->description      = $request->get('description');
+         $service->medecin          = $request->get('medecin');
+         $service->emplacement      = $request->get('emplacement');
+         $service->horraires        = $request->get('horraires');
+         $service->user_id          = Auth::user()->id;
+
+
+        $service->update();
+
+        return redirect()->route('service.index')->with('success', 'Service modifier avec succé');
     }
 
     /**
@@ -84,5 +134,10 @@ class ServiceController extends Controller
     public function destroy($id)
     {
         //
+        $service = Service::findOrFail($id);
+
+        $service->delete();
+
+        return redirect()->route('service.index')->with('info', 'suppression réussi');
     }
 }

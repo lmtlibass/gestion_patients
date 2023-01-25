@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('./layouts.app')
 
 @section('content')
      <div class="container">
@@ -18,25 +18,28 @@
                               <thead>
                                    <tr>
                                         <th scope="col">#</th>
-                                        <th scope="col">Service</th>
-                                        <th scope="col">description</th>
-                                        <th scope="col">medecin</th>
-                                        <th scope="col">emplacement</th>
-                                        <th scope="col">horraires</th>
-                                        <th scope="col">Action</th>
+                                        <th scope="col">Prenom</th>
+                                        <th scope="col">Nom</th>
+                                        <th scope="col">Numero étudiant</th>
+                                        <th scope="col">Departement</th>
+                                        <th scope="col">Symptome</th>
+                                        <th scope="col">Traitement</th>
+                                        <th scope="col">Antecendant</th>
                                    </tr>
                               </thead>
                               <tbody>
-                                   @foreach ($services as $service)
+                                   @foreach ($info_etudiants as $info_etudiant)
                                         <tr>
-                                             <th scope="row">{{$service->id}}</th>
-                                             <td>{{$service->nom_service}}</td>
-                                             <td>{{$service->description}}</td>
-                                             <td>{{$service->medecin}}</td>
-                                             <td>{{$service->emplacement}}</td>
-                                             <td>{{$service->horraires}}</td>
+                                             <th scope="row">{{$info_etudiant->id}}</th>
+                                             <td>{{$info_etudiant->prenom}}</td>
+                                             <td>{{$info_etudiant->nom}}</td>
+                                             <td>{{$info_etudiant->num_etudiant}}</td>
+                                             <td>{{$info_etudiant->departement}}</td>
+                                             <td>{{$info_etudiant->symptome}}</td>
+                                             <td>{{$info_etudiant->traitement}}</td>
+                                             <td>{{$info_etudiant->antecedant}}</td>
                                              <td>
-                                                  <a href="{{route('service.show', $service->id)}}" class="text-info">
+                                                  <a href="{{route('etudiant.show', $info_etudiant->id)}}" class="text-info">
                                                        <i class="bi bi-eye"></i></a>
                                              </td>
                                         </tr>
@@ -44,7 +47,7 @@
                               </tbody>
                          </table>
                          <div class="d-flex mx-auto">
-                              {!! $services->links() !!}
+                              {!! $info_etudiants->links() !!}
                           </div>
                     </div>
                     

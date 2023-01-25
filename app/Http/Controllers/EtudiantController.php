@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\Auth;
 
 class EtudiantController extends Controller
 {
+    public function getEtudiantInfo(){
+        $info_etudiants = InfoEtudiant::paginate(5);
+
+        return view('admin.etudiant', compact('info_etudiants'));
+    }
     /**
      * Display a listing of the resource.
      *
@@ -78,7 +83,9 @@ class EtudiantController extends Controller
      */
     public function show($id)
     {
-        
+        $etudiant = InfoEtudiant::findOrFail($id);
+
+        return view('admin.showEtudiant', compact('etudiant'));
 
     }
 

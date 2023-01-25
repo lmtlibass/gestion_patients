@@ -29,5 +29,6 @@ Route::resource('etudiant', EtudiantController::class);
 Route::resource('service', ServiceController::class);
 
 Route::namespace('App\Http\Controllers\admin')->prefix('admin')->name('admin.')->group(function() {
+    Route::get('etudiant', [EtudiantController::class, 'getEtudiantInfo']);
     Route::resource('user', UserController::class);
 });

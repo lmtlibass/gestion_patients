@@ -15,8 +15,8 @@
                                    </div>
                               @endif
 
-                              <div class="d-flex flex-md-row flex-sm-col justify-content-around px-5">
-                                   <div class="card" style="width: 18rem;">
+                              <div class="d-flex flex-md-row flex-sm-col justify-content-start px-5 flex-wrap">
+                                   <div class="card mt-4" style="width: 18rem;">
                                         <div class="card-body">
                                              <h5 class="card-title">Renseigner mes informations médicales</h5>
                                              <p class="card-text">
@@ -29,7 +29,7 @@
                                                   verifier mes informations</a>
                                         </div>
                                    </div>
-                                   <div class="card" style="width: 18rem;">
+                                   <div class="card mt-4 ms-5" style="width: 18rem;">
                                         <div class="card-body">
                                              <h5 class="card-title">service médicale</h5>
                                              <p class="card-text">
@@ -38,6 +38,18 @@
                                                   des consultations médicales,
                                                   des vaccins et des soins dentaires.</p>
                                              <a href="{{Route('service.index')}}" class="btn btn-info text-white" style="font-weight: bolder">
+                                                  Voir services</a>
+                                        </div>
+                                   </div>
+                                   <div class="card mt-4" style="width: 18rem;">
+                                        <div class="card-body">
+                                             <h5 class="card-title">Liste des étudiants</h5>
+                                             <p class="card-text">
+                                                  Vous pouvez consulter les professionnels de la santé pour des soins
+                                                  primaires,
+                                                  des consultations médicales,
+                                                  des vaccins et des soins dentaires.</p>
+                                             <a href="{{Route('admin.')}}" class="btn btn-info text-white" style="font-weight: bolder">
                                                   Voir services</a>
                                         </div>
                                    </div>

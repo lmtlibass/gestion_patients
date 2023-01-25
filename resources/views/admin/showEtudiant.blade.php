@@ -5,7 +5,7 @@
           
           <div class="row justify-content-center">
                <div class="col-md-10">
-                    <button class="btn btn-secondary text-white mb-5" onclick="location.href='/'">
+                    <button class="btn btn-secondary text-white mb-5" onclick="location.href='{{route('admin.')}}'">
                          <i class="bi bi-skip-backward-fill"></i>  Retour
                     </button>
                     <div class="card">
@@ -20,35 +20,23 @@
                               @endif
 
                               <div class="d-flex flex-md-row flex-sm-col justify-content-around px-5 align-items-center">
-                                   @if (session()->has('message'))
-                                        <div class="alert alert-success">
-                                             {{ session()->get('message') }}
-                                        </div>
-                                   @endif
-                                   @if (empty($info_etudiant))
-                                        <p>
-                                             Vous n'avez pas encore renseigner vos informations</p>
-                                        <button class="btn btn-success"
-                                             onclick="location.href='{{ route('etudiant.create') }}'">
-                                             Ajouter
-                                        </button>
-                                   @else
+                              
                                         <div class="card" style="width: 30rem;">
                                              <div class="card-body">
                                                   <h5 class="card-title">{{ Auth::user()->name }}</h5>
                                                   <p class="card-text">
-                                                       {{ $info_etudiant->antecedant }}</p>
+                                                       {{$etudiant->antecedant }}</p>
                                              </div>
                                              <ul class="list-group list-group-flush">
-                                                  <li class="list-group-item">{{ $info_etudiant->num_etudiant }}</li>
-                                                  <li class="list-group-item">{{ $info_etudiant->departement }}</li>
-                                                  <li class="list-group-item">{{ $info_etudiant->symptome }}</li>
-                                                  <li class="list-group-item">{{ $info_etudiant->traitement }}</li>
+                                                  <li class="list-group-item">{{$etudiant->num_etudiant }}</li>
+                                                  <li class="list-group-item">{{$etudiant->departement }}</li>
+                                                  <li class="list-group-item">{{$etudiant->symptome }}</li>
+                                                  <li class="list-group-item">{{$etudiant->traitement }}</li>
                                              </ul>
                                              <div class="card-body d-flex justify-content-between">
-                                                  <a href="{{ route('etudiant.edit', $info_etudiant->id) }}"
+                                                  <a href="{{ route('etudiant.edit',$etudiant->id) }}"
                                                        class="btn btn-info">Modifier</a>
-                                                  <form action="{{ route('etudiant.destroy', $info_etudiant->id) }}"
+                                                  <form action="{{ route('etudiant.destroy',$etudiant->id) }}"
                                                        method="POST">
                                                        @csrf
                                                        @method('DELETE')
@@ -56,7 +44,7 @@
                                                   </form>
                                              </div>
                                         </div>
-                                   @endif
+                                   
                               </div>
                               
                          </div>
