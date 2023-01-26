@@ -55,4 +55,13 @@ class User extends Authenticatable
     public function infoEtudiant(){
         return $this->belongsTo(InfoEtudiant::class);
     }
+
+    //gates pour limiter les accés aux autres utilisateurs
+
+    public function isAdmin(){
+
+        return $this->roles()->where('name', 'admin')->first();
+    }
+
+    
 }

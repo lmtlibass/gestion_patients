@@ -49,11 +49,12 @@
                                         <label class="form-label" for="symptome">Traitement</label>
                                    </div>
                                    <!--  -->
-                                   <div class="form-outline">
-                                        <textarea class="form-control" id="antecedant" name="antecedant" rows="4"></textarea>
-                                        <label class="form-label" for="antecedant">antecedant</label>
-                                   </div>
-                                   
+                                   @can('administration')
+                                        <div class="form-outline">
+                                             <textarea class="form-control" id="antecedant" name="antecedant" rows="4"></textarea>
+                                             <label class="form-label" for="antecedant">antecedant</label>
+                                        </div>
+                                   @endcan
                                   
 
                                    <!-- Submit button -->

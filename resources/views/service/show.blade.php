@@ -29,20 +29,23 @@
                                                    {{$service->emplacement}}</p>
                                              <p class="card-text"><small class="text-muted">{{$service->horraires}}</small>
                                              </p>
-                                             <div class="mt-3 d-flex flex-row justify-content-between">
-                                                  {{-- update btn --}}
-                                                  <a class="col-2   text-warning" href="{{route('service.edit', $service->id)}}">
-                                                       <i class="bi bi-pencil-square"></i></a>
+                                             @can('administration')
+                              
+                                                  <div class="mt-3 d-flex flex-row justify-content-between">
+                                                       {{-- update btn --}}
+                                                       <a class="col-2   text-warning" href="{{route('service.edit', $service->id)}}">
+                                                            <i class="bi bi-pencil-square"></i></a>
 
-                                                  {{-- delete btn --}}     
-                                                  <form action="{{route('service.destroy', $service->id)}}" method="POST">
-                                                       @csrf
-                                                       @method('DELETE')
+                                                       {{-- delete btn --}}     
+                                                       <form action="{{route('service.destroy', $service->id)}}" method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
 
-                                                       <button type="submit" class="col-2 bg-transparent  text-danger" style="border: none">
-                                                            <i class="bi bi-trash3"></i></button>
-                                                  </form>
-                                             </div>
+                                                            <button type="submit" class="col-2 bg-transparent  text-danger" style="border: none">
+                                                                 <i class="bi bi-trash3"></i></button>
+                                                       </form>
+                                                  </div>
+                                             @endcan
 
                                         </div>
                                    </div>

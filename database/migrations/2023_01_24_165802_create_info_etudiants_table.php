@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('departement');
             $table->string('symptome');
             $table->string('traitement');
-            $table->string('antecedant');
+            $table->string('antecedant')->nullable();
             $table->foreignId('user_id')
                     ->constrained()
                     ->onDelete('cascade')

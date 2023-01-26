@@ -9,9 +9,11 @@
                          <button class="btn btn-secondary text-white mb-5" onclick="location.href='/'">
                               <i class="bi bi-skip-backward-fill"></i> Retour
                          </button>
-                         <button class="btn btn-success text-white mb-5" onclick="location.href='{{ route('service.create') }}'">
-                              <i class="bi bi-folder-plus"></i> Ajouter
-                         </button>
+                         @can('administration')
+                              <button class="btn btn-success text-white mb-5" onclick="location.href='{{ route('service.create') }}'">
+                                   <i class="bi bi-folder-plus"></i> Ajouter
+                              </button>
+                         @endcan
                     </div>
                     <div class="card table-responsive">
                          <table class="table table-striped table-hover">

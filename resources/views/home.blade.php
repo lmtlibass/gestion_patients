@@ -41,18 +41,20 @@
                                                   Voir services</a>
                                         </div>
                                    </div>
-                                   <div class="card mt-4" style="width: 18rem;">
-                                        <div class="card-body">
-                                             <h5 class="card-title">Liste des étudiants</h5>
-                                             <p class="card-text">
-                                                  Vous pouvez consulter les professionnels de la santé pour des soins
-                                                  primaires,
-                                                  des consultations médicales,
-                                                  des vaccins et des soins dentaires.</p>
-                                             <a href="{{Route('admin.')}}" class="btn btn-info text-white" style="font-weight: bolder">
-                                                  Voir services</a>
+                                   @can('administration')
+                                        <div class="card mt-4" style="width: 18rem;">
+                                             <div class="card-body">
+                                                  <h5 class="card-title">Liste des étudiants</h5>
+                                                  <p class="card-text">
+                                                       Vous pouvez consulter les professionnels de la santé pour des soins
+                                                       primaires,
+                                                       des consultations médicales,
+                                                       des vaccins et des soins dentaires.</p>
+                                                  <a href="{{Route('admin.')}}" class="btn btn-info text-white" style="font-weight: bolder">
+                                                       Voir services</a>
+                                             </div>
                                         </div>
-                                   </div>
+                                   @endcan
                               </div>
                          </div>
                     </div>

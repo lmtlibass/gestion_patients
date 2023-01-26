@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class ServiceController extends Controller
 {
@@ -29,6 +30,9 @@ class ServiceController extends Controller
     public function create()
     {
         //
+        if (Gate::denies('administration')) {
+            abort(403, 'Vous n\'êtes pas éligible à ce service');
+        }
         return view('service.create');
     }
 
@@ -41,6 +45,9 @@ class ServiceController extends Controller
     public function store(Request $request)
     {
         //
+        if (Gate::denies('administration')) {
+            abort(403, 'Vous n\'êtes pas éligible à ce service');
+        }
 
         $request->validate([
             'nom_service' => 'required',
@@ -87,6 +94,10 @@ class ServiceController extends Controller
     public function edit($id)
     {
         //
+        if (Gate::denies('administration')) {
+            abort(403, 'Vous n\'êtes pas éligible à ce service');
+        }
+
         $service = Service::findOrFail($id);
 
         return view('service.edit', compact('service'));
@@ -102,6 +113,10 @@ class ServiceController extends Controller
     public function update(Request $request, $id)
     {
         //
+        if (Gate::denies('administration')) {
+            abort(403, 'Vous n\'êtes pas éligible à ce service');
+        }
+
         $request->validate([
             'nom_service' => 'required',
             'description' => 'required',
@@ -134,6 +149,10 @@ class ServiceController extends Controller
     public function destroy($id)
     {
         //
+        if (Gate::denies('administration')) {
+            abort(403, 'Vous n\'êtes pas éligible à ce service');
+        }
+        
         $service = Service::findOrFail($id);
 
         $service->delete();

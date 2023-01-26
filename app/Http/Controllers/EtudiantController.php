@@ -5,10 +5,16 @@ namespace App\Http\Controllers;
 use App\Models\InfoEtudiant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 
 class EtudiantController extends Controller
 {
     public function getEtudiantInfo(){
+
+        if (Gate::denies('administration')) {
+            abort(403, 'Vous n\'êtes pas éligible à ce service');
+        }
+
         $info_etudiants = InfoEtudiant::paginate(5);
 
         return view('admin.etudiant', compact('info_etudiants'));
@@ -83,6 +89,7 @@ class EtudiantController extends Controller
      */
     public function show($id)
     {
+
         $etudiant = InfoEtudiant::findOrFail($id);
 
         return view('admin.showEtudiant', compact('etudiant'));
@@ -146,6 +153,7 @@ class EtudiantController extends Controller
     public function destroy($id)
     {
         //
+        
         $info_etudiant = InfoEtudiant::findOrFail($id);
         $info_etudiant->delete();
 
