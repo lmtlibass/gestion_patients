@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
-
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Gate;
+ 
 class UserController extends Controller
 {
     /**
@@ -16,6 +18,11 @@ class UserController extends Controller
     public function index()
     {
         //
+
+        $users  = User::paginate(5);
+
+        return view('admin.user.index')->with('users', $users);
+
     }
 
     /**
@@ -59,6 +66,17 @@ class UserController extends Controller
     public function edit(User $user)
     {
         //
+        if (Gate::denies('edit-user')) {
+            abort(403, 'Vous n\'êtes pas un administrateur');
+            return redirect()->route('/');
+        }
+       
+        $roles = Role::all();
+
+        return view('admin.user.edit', [
+            'user'      => $user,
+            'roles'     => $roles,       
+        ]);
     }
 
     /**
@@ -71,6 +89,9 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         //
+        $user->roles()->sync($request->roles);
+
+        return redirect()->route('admin.user.index');
     }
 
     /**
@@ -82,5 +103,16 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         //
+        if (Gate::denies('delete-user')) {
+            abort(403, 'Vous n\'êtes pas un administrateur');
+            return redirect()->route('/');
+        }
+       
+        $user->roles()->detach();
+        $user->delete();
+
+        return redirect()->route('admin.user.index');
+
+        
     }
 }

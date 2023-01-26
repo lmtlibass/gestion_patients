@@ -15,7 +15,7 @@
                                    </div>
                               @endif
 
-                              <div class="d-flex flex-md-row flex-sm-col justify-content-start px-5 flex-wrap">
+                              <div class="d-flex flex-md-row flex-sm-col justify-content-center px-5 flex-wrap">
                                    <div class="card mt-4" style="width: 18rem;">
                                         <div class="card-body">
                                              <h5 class="card-title">Renseigner mes informations médicales</h5>
@@ -52,6 +52,15 @@
                                                        des vaccins et des soins dentaires.</p>
                                                   <a href="{{Route('admin.')}}" class="btn btn-info text-white" style="font-weight: bolder">
                                                        Voir services</a>
+                                             </div>
+                                        </div>
+                                        <div class="card mt-4 ms-5" style="width: 18rem;">
+                                             <div class="card-body">
+                                                  <h5 class="card-title">Gestion des utilisateurs</h5>
+                                                  <p class="card-text">
+                                                       Attribuer des roles au différentes utilisateurs.</p>
+                                                  <a href="{{Route('admin.user.index')}}" class="btn btn-info text-white" style="font-weight: bolder">
+                                                       Gerer utilisateur</a>
                                              </div>
                                         </div>
                                    @endcan

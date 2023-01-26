@@ -28,7 +28,7 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 Route::resource('etudiant', EtudiantController::class);
 Route::resource('service', ServiceController::class);
 
-Route::namespace('App\Http\Controllers\admin')->prefix('admin')->name('admin.')->group(function() {
+Route::namespace('App\Http\Controllers\admin')->prefix('admin')->name('admin.')->middleware('can:administration')->group(function() {
     Route::get('etudiant', [EtudiantController::class, 'getEtudiantInfo']);
     Route::resource('user', UserController::class);
 });
